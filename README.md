@@ -1,7 +1,16 @@
 # dotfiles
 
+## Stuff i use
+
+- neovim
+- gruvbox
+- fzf
+- zsh
+- fira-code
+
 ## Terminal setup resources 
 
+- GNU stow to sync dotfiles. Example: `stow -t ~ nvim`
 - https://dev.to/gabsii/2020-macos-terminal-setup-zsh-iterm-1nln
 - https://denysdovhan.com/spaceship-prompt/
 - https://github.com/denysdovhan/spaceship-prompt#npm
