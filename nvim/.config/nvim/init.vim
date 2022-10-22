@@ -14,7 +14,41 @@ Plug 'morhetz/gruvbox'
 " Nerd tree.
 Plug 'preservim/nerdtree'
 
+" Auto completeion + LSP features
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+
+" FZF to find files
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
+
+" Options for Ctrl+P plugin
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP' " map ctrl+p keys to plugin
+" let g:ctrlp_working_path_mode = 'ra' " go up to ancestor with .git
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Make FZF performs more like CtrlP
+nnoremap <C-p> :Files<CR>
+
+" Options for coc vim plugin
+" Tab for auto completion
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 "Copied from gruvbox installation wiki.
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -33,6 +67,6 @@ if (empty($TMUX))
   endif
 endif
 
-let g:gruvbox_contrast_dark = 'hard'
-
 autocmd vimenter * ++nested colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+
